@@ -81,3 +81,62 @@ class Mascota(ABC):
             "humor":   self.__humor,
             "vivo":    self.esta_vivo(),
         }
+
+
+# ── Clases hijas ──────────────────────────────────────────────────────────────
+
+class Perro(Mascota):
+
+    def jugar(self) -> str:
+        self._modificar_stats(hambre=15, energia=-20, humor=30)
+        return f"{self.nombre} corre, salta y trae la pelota. ¡Cola en modo hélice!"
+
+    def _mensaje_alimentar(self) -> str:
+        return f"{self.nombre} devora el plato en segundos y menea la cola."
+
+    def _mensaje_dormir(self) -> str:
+        return f"{self.nombre} da tres vueltas y cae rendido con un suspiro."
+
+    def sonido_caracteristico(self) -> str:
+        return "¡Guau guau!"
+
+
+class Gato(Mascota):
+
+    def jugar(self) -> str:
+        self._modificar_stats(hambre=8, energia=-15, humor=20)
+        return f"{self.nombre} manotea el juguete, lo ignora y finalmente lo empuja al piso."
+
+    def _mensaje_alimentar(self) -> str:
+        return f"{self.nombre} olfatea el plato, lo mira con desdén... y come igual."
+
+    def _mensaje_dormir(self) -> str:
+        return f"{self.nombre} encuentra el lugar más incómodo posible y duerme ahí."
+
+    def sonido_caracteristico(self) -> str:
+        return "Mrrrow..."
+
+
+class Robot(Mascota):
+
+    def __init__(self, nombre: str):
+        super().__init__(nombre)
+        self.__bateria_extra = 0  # atributo exclusivo de Robot
+
+    def jugar(self) -> str:
+        self._modificar_stats(hambre=0, energia=-25, humor=25)
+        return f"{self.nombre} ejecuta protocolo_diversión_v2.exe. Procesando... ¡DIVERTIDO!"
+
+    def alimentar(self):
+        """Los robots no comen, se cargan."""
+        self._modificar_stats(hambre=-40, energia=20, humor=15)
+        return self._mensaje_alimentar()
+
+    def _mensaje_alimentar(self) -> str:
+        return f"{self.nombre} conecta el cable de carga. Batería al {100 - self.hambre}%."
+
+    def _mensaje_dormir(self) -> str:
+        return f"{self.nombre} entra en modo suspensión. Zzzz... (sonido de ventilador)"
+
+    def sonido_caracteristico(self) -> str:
+        return "BZZZT... 01001000 01101001"
