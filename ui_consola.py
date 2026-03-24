@@ -105,5 +105,12 @@ class Consola:
         """Genera una barra visual de progreso. █ bueno, ▓ regular, ░ malo."""
         bloques_llenos = round(valor / 100 * largo)
         bloques_vacios = largo - bloques_llenos
-        simbolo = "░" if valor < 30 else ("▓" if valor < 60 else "█")
+
+        if valor < 30:
+            simbolo = "░"   # mal
+        elif valor < 60:
+            simbolo = "▓"   # regular
+        else:
+            simbolo = "█"   # bien
+
         return f"[{simbolo * bloques_llenos}{'·' * bloques_vacios}]"

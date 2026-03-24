@@ -63,11 +63,14 @@ class Mascota(ABC):
 
     # ── Lógica interna ───────────────────────────────────────────────────────
 
+    STAT_MINIMO = 0
+    STAT_MAXIMO = 100
+
     def _modificar_stats(self, hambre=0, energia=0, humor=0):
         """Modifica los stats sumando o restando los valores recibidos, sin salir del rango 0-100."""
-        self._hambre  = max(0, min(100, self._hambre  + hambre))
-        self._energia = max(0, min(100, self._energia + energia))
-        self._humor   = max(0, min(100, self._humor   + humor))
+        self._hambre  = max(self.STAT_MINIMO, min(self.STAT_MAXIMO, self._hambre  + hambre))
+        self._energia = max(self.STAT_MINIMO, min(self.STAT_MAXIMO, self._energia + energia))
+        self._humor   = max(self.STAT_MINIMO, min(self.STAT_MAXIMO, self._humor   + humor))
 
     def esta_vivo(self):
         """Devuelve True si la mascota sigue viva. Muere si se le acaba el hambre o la energía."""

@@ -80,7 +80,9 @@ class Game:
         accion = self.ACCIONES.get(opcion_jugador)  # None si la tecla no es válida
 
         if accion in ("alimentar", "jugar", "dormir"):
-            resultado = getattr(self.__mascota, accion)()
+            # getattr busca el método por nombre y lo llama: mascota.alimentar(), .jugar() o .dormir()
+            metodo = getattr(self.__mascota, accion)
+            resultado = metodo()
             Consola.mostrar_resultado(resultado)
             Consola.mostrar_estado(self.__mascota.get_estado())
 
