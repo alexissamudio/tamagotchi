@@ -18,13 +18,6 @@ class Game:
         "3": ("Robot",  Robot),
     }
 
-    # Relaciona la tecla del jugador con la dificultad y su decay por turno.
-    DIFICULTADES = {
-        "1": ("Fácil",   {"hambre": -5,  "energia": -4, "humor": -3}),
-        "2": ("Normal",  {"hambre": -8,  "energia": -6, "humor": -4}),
-        "3": ("Difícil", {"hambre": -12, "energia": -9, "humor": -6}),
-    }
-
     # Relaciona la tecla del jugador con el nombre de la acción a ejecutar.
     ACCIONES = {
         "1": "alimentar",
@@ -46,24 +39,15 @@ class Game:
         """Muestra la bienvenida, pide el tipo y nombre de mascota, y arranca el loop."""
         Consola.bienvenida()
 
-        opcion_mascota     = Consola.pedir_tipo_mascota(self.MASCOTAS_DISPONIBLES)
-        nombre             = Consola.pedir_nombre()
-        opcion_dificultad  = Consola.pedir_dificultad(self.DIFICULTADES)
+        opcion_mascota = Consola.pedir_tipo_mascota(self.MASCOTAS_DISPONIBLES)
+        nombre         = Consola.pedir_nombre()
 
         nombre_especie, ClaseMascota = self.MASCOTAS_DISPONIBLES[opcion_mascota]
         self.__mascota = ClaseMascota(nombre)
 
-        # Aplicar el decay de la dificultad elegida como atributos de instancia.
-        # Esto sobreescribe los valores de clase de Mascota sin modificar la clase.
-        nombre_dificultad, decay = self.DIFICULTADES[opcion_dificultad]
-        self.__mascota.TURNO_HAMBRE  = decay["hambre"]
-        self.__mascota.TURNO_ENERGIA = decay["energia"]
-        self.__mascota.TURNO_HUMOR   = decay["humor"]
-
         Consola.mostrar_mensaje(
             f"\n¡{self.__mascota.nombre} ha llegado a tu vida! "
             f"{self.__mascota.sonido_caracteristico()}\n"
-            f"Dificultad: {nombre_dificultad}\n"
         )
 
         self.__activo = True

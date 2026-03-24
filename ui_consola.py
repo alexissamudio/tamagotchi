@@ -40,20 +40,6 @@ class Consola:
             print("Opción inválida. Probá de nuevo.")
 
     @staticmethod
-    def pedir_dificultad(opciones):
-        """Muestra las dificultades disponibles y devuelve la elegida por el jugador."""
-        print("\n¿Qué dificultad elegís?")
-        for key, (nombre, _) in opciones.items():
-            print(f"  {key}. {nombre}")
-
-        while True:
-            eleccion = input("\nElegí (1/2/3): ").strip()
-            opcion_valida = eleccion in opciones
-            if opcion_valida:
-                return eleccion
-            print("Opción inválida. Probá de nuevo.")
-
-    @staticmethod
     def pedir_nombre():
         """Pide el nombre de la mascota. Repite hasta recibir un nombre no vacío."""
         # Seguimos preguntando hasta que el jugador escriba algo
