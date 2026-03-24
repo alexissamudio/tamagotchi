@@ -11,9 +11,9 @@ class Perro(Mascota):
 
     # ── Efectos de jugar ──────────────────────────────────────────────────────
     # El perro juega con mucho entusiasmo: se cansa y da hambre, pero se pone muy feliz.
-    JUGAR_HAMBRE  = -15  # jugar le da hambre
-    JUGAR_ENERGIA = -20  # jugar lo cansa bastante
-    JUGAR_HUMOR   = 30   # jugar lo pone muy contento
+    JUGAR_HAMBRE  = -10  # jugar le da hambre
+    JUGAR_ENERGIA = -15  # jugar lo cansa bastante
+    JUGAR_HUMOR   = 25   # jugar lo pone muy contento
 
     def jugar(self):
         """Juega con entusiasmo: sube mucho el humor pero gasta energía y baja el hambre."""

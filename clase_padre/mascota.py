@@ -10,27 +10,27 @@ class Mascota(ABC):
     """Clase base abstracta. Define el contrato de toda mascota."""
 
     # ── Stats iniciales ───────────────────────────────────────────────────────
-    HAMBRE_INICIAL  = 50   # arranca con la panza a la mitad
+    HAMBRE_INICIAL  = 60   # arranca con la panza a la mitad
     ENERGIA_INICIAL = 80   # arranca descansada
     HUMOR_INICIAL   = 60   # arranca contenta pero no eufórica
 
     # ── Efectos de alimentar ──────────────────────────────────────────────────
     # Comer llena la panza, da un poco de energía y mejora el humor.
-    ALIMENTAR_HAMBRE  = 30
+    ALIMENTAR_HAMBRE  = 35
     ALIMENTAR_ENERGIA = 10
     ALIMENTAR_HUMOR   = 10
 
     # ── Efectos de dormir ─────────────────────────────────────────────────────
     # Dormir recupera mucha energía, pero la mascota gasta algo de panza estando quieta.
-    DORMIR_HAMBRE  = -10
+    DORMIR_HAMBRE  = -5
     DORMIR_ENERGIA = 40
     DORMIR_HUMOR   = 5
 
     # ── Efectos de pasar un turno (el tiempo avanza solo) ─────────────────────
     # Cada turno la mascota tiene más hambre, menos energía y se pone un poco más triste.
-    TURNO_HAMBRE  = -10
-    TURNO_ENERGIA = -8
-    TURNO_HUMOR   = -5
+    TURNO_HAMBRE  = -8
+    TURNO_ENERGIA = -6
+    TURNO_HUMOR   = -4
 
     def __init__(self, nombre):
         """Inicializa la mascota con stats por defecto."""

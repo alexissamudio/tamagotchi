@@ -12,8 +12,8 @@ class Robot(Mascota):
     # ── Efectos de jugar ──────────────────────────────────────────────────────
     # El robot no necesita comida para jugar, pero consume mucha batería.
     JUGAR_HAMBRE  = 0    # jugar no afecta su nivel de batería
-    JUGAR_ENERGIA = -25  # jugar drena bastante batería
-    JUGAR_HUMOR   = 25   # jugar lo pone contento
+    JUGAR_ENERGIA = -18  # jugar drena bastante batería
+    JUGAR_HUMOR   = 20   # jugar lo pone contento
 
     # ── Efectos de cargar (alimentar para el robot) ───────────────────────────
     # Cargar al robot es más efectivo que alimentar a una mascota normal.

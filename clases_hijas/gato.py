@@ -11,9 +11,9 @@ class Gato(Mascota):
 
     # ── Efectos de jugar ──────────────────────────────────────────────────────
     # El gato juega con calma: se cansa y da hambre poco, y sube el humor de forma moderada.
-    JUGAR_HAMBRE  = -8   # jugar le da poca hambre
-    JUGAR_ENERGIA = -15  # jugar lo cansa moderadamente
-    JUGAR_HUMOR   = 20   # jugar lo pone contento, pero no tanto como al perro
+    JUGAR_HAMBRE  = -5   # jugar le da poca hambre
+    JUGAR_ENERGIA = -10  # jugar lo cansa moderadamente
+    JUGAR_HUMOR   = 15   # jugar lo pone contento, pero no tanto como al perro
 
     def jugar(self):
         """Juega de forma tranquila: sube el humor con bajo costo de energía y hambre."""

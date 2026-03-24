@@ -82,14 +82,17 @@ class Game:
         if accion == "alimentar":
             resultado = self.__mascota.alimentar()
             Consola.mostrar_resultado(resultado)
+            Consola.mostrar_estado(self.__mascota.get_estado())
 
         elif accion == "jugar":
             resultado = self.__mascota.jugar()
             Consola.mostrar_resultado(resultado)
+            Consola.mostrar_estado(self.__mascota.get_estado())
 
         elif accion == "dormir":
             resultado = self.__mascota.dormir()
             Consola.mostrar_resultado(resultado)
+            Consola.mostrar_estado(self.__mascota.get_estado())
 
         elif accion == "estado":
             Consola.mostrar_estado(self.__mascota.get_estado())
