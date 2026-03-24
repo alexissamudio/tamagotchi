@@ -32,7 +32,7 @@ class Mascota(ABC):
     TURNO_ENERGIA = -8
     TURNO_HUMOR   = -5
 
-    def __init__(self, nombre: str) -> None:
+    def __init__(self, nombre):
         """Inicializa la mascota con stats por defecto."""
         self._nombre  = nombre
         self._hambre  = self.HAMBRE_INICIAL   # 100 = lleno, 0 = muerto de hambre
@@ -42,34 +42,34 @@ class Mascota(ABC):
     # ── Getters ──────────────────────────────────────────────────────────────
 
     @property
-    def nombre(self) -> str:
+    def nombre(self):
         """Devuelve el nombre de la mascota."""
         return self._nombre
 
     @property
-    def hambre(self) -> int:
+    def hambre(self):
         """Devuelve el nivel de hambre (100 = lleno, 0 = muerta de hambre)."""
         return self._hambre
 
     @property
-    def energia(self) -> int:
+    def energia(self):
         """Devuelve el nivel de energía (100 = llena de energía, 0 = agotada)."""
         return self._energia
 
     @property
-    def humor(self) -> int:
+    def humor(self):
         """Devuelve el nivel de humor (100 = feliz, 0 = miserable)."""
         return self._humor
 
     # ── Lógica interna ───────────────────────────────────────────────────────
 
-    def _modificar_stats(self, hambre=0, energia=0, humor=0) -> None:
+    def _modificar_stats(self, hambre=0, energia=0, humor=0):
         """Modifica los stats sumando o restando los valores recibidos, sin salir del rango 0-100."""
         self._hambre  = max(0, min(100, self._hambre  + hambre))
         self._energia = max(0, min(100, self._energia + energia))
         self._humor   = max(0, min(100, self._humor   + humor))
 
-    def esta_vivo(self) -> bool:
+    def esta_vivo(self):
         """Devuelve True si la mascota sigue viva. Muere si se le acaba el hambre o la energía."""
         sin_hambre  = self._hambre  <= 0
         sin_energia = self._energia <= 0
@@ -77,7 +77,7 @@ class Mascota(ABC):
 
     # ── Acciones comunes (con comportamiento por defecto) ────────────────────
 
-    def alimentar(self) -> str:
+    def alimentar(self):
         """Sube el hambre, energía y humor. Devuelve el mensaje de la especie."""
         self._modificar_stats(
             hambre  = self.ALIMENTAR_HAMBRE,
@@ -86,7 +86,7 @@ class Mascota(ABC):
         )
         return self._mensaje_alimentar()
 
-    def dormir(self) -> str:
+    def dormir(self):
         """Recupera mucha energía a costa de algo de hambre. Devuelve el mensaje de la especie."""
         self._modificar_stats(
             hambre  = self.DORMIR_HAMBRE,
@@ -95,7 +95,7 @@ class Mascota(ABC):
         )
         return self._mensaje_dormir()
 
-    def pasar_turno(self) -> None:
+    def pasar_turno(self):
         """El tiempo avanza automáticamente: baja el hambre, la energía y el humor."""
         self._modificar_stats(
             hambre  = self.TURNO_HAMBRE,
@@ -106,28 +106,28 @@ class Mascota(ABC):
     # ── Métodos abstractos (cada especie los implementa a su manera) ─────────
 
     @abstractmethod
-    def jugar(self) -> str:
+    def jugar(self):
         """Acción de jugar. Cada especie tiene su propio comportamiento y costo de stats."""
         pass
 
     @abstractmethod
-    def _mensaje_alimentar(self) -> str:
+    def _mensaje_alimentar(self):
         """Mensaje personalizado que se muestra al alimentar a esta especie."""
         pass
 
     @abstractmethod
-    def _mensaje_dormir(self) -> str:
+    def _mensaje_dormir(self):
         """Mensaje personalizado que se muestra al hacer dormir a esta especie."""
         pass
 
     @abstractmethod
-    def sonido_caracteristico(self) -> str:
+    def sonido_caracteristico(self):
         """Sonido único de la especie, usado al presentar la mascota al inicio."""
         pass
 
     # ── Estado general ───────────────────────────────────────────────────────
 
-    def get_estado(self) -> dict:
+    def get_estado(self):
         """Devuelve un diccionario con todos los stats actuales de la mascota."""
         return {
             "nombre":  self._nombre,

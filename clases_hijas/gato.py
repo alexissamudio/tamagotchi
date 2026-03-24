@@ -15,7 +15,7 @@ class Gato(Mascota):
     JUGAR_ENERGIA = -15  # jugar lo cansa moderadamente
     JUGAR_HUMOR   = 20   # jugar lo pone contento, pero no tanto como al perro
 
-    def jugar(self) -> str:
+    def jugar(self):
         """Juega de forma tranquila: sube el humor con bajo costo de energía y hambre."""
         self._modificar_stats(
             hambre  = self.JUGAR_HAMBRE,
@@ -24,14 +24,14 @@ class Gato(Mascota):
         )
         return f"{self.nombre} manotea el juguete, lo ignora y finalmente lo empuja al piso."
 
-    def _mensaje_alimentar(self) -> str:
+    def _mensaje_alimentar(self):
         """Mensaje al alimentar al gato."""
         return f"{self.nombre} olfatea el plato, lo mira con desdén... y come igual."
 
-    def _mensaje_dormir(self) -> str:
+    def _mensaje_dormir(self):
         """Mensaje al hacer dormir al gato."""
         return f"{self.nombre} encuentra el lugar más incómodo posible y duerme ahí."
 
-    def sonido_caracteristico(self) -> str:
+    def sonido_caracteristico(self):
         """Sonido del gato, usado al presentarlo al inicio."""
         return "Mrrrow..."

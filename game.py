@@ -27,15 +27,15 @@ class Game:
         "5": "salir",
     }
 
-    def __init__(self) -> None:
+    def __init__(self):
         """Inicializa el juego sin mascota activa y con el contador de turnos en 0."""
-        self.__mascota: Mascota | None = None  # se asigna cuando el jugador elige
+        self.__mascota = None  # se asigna cuando el jugador elige
         self.__turno   = 0
         self.__activo  = False
 
     # ── Inicio ────────────────────────────────────────────────────────────────
 
-    def iniciar(self) -> None:
+    def iniciar(self):
         """Muestra la bienvenida, pide el tipo y nombre de mascota, y arranca el loop."""
         Consola.bienvenida()
 
@@ -56,7 +56,7 @@ class Game:
 
     # ── Loop principal ────────────────────────────────────────────────────────
 
-    def __loop_principal(self) -> None:
+    def __loop_principal(self):
         """
         Ciclo principal del juego. Se repite hasta que la partida termine.
 
@@ -75,7 +75,7 @@ class Game:
 
     # ── Procesamiento de acciones ─────────────────────────────────────────────
 
-    def __procesar_accion(self, opcion_jugador: str) -> None:
+    def __procesar_accion(self, opcion_jugador):
         """Ejecuta la acción elegida por el jugador y muestra el resultado en consola."""
         accion = self.ACCIONES.get(opcion_jugador)  # None si la tecla no es válida
 
@@ -105,7 +105,7 @@ class Game:
 
     # ── Fin de partida ────────────────────────────────────────────────────────
 
-    def __determinar_fin(self) -> bool:
+    def __determinar_fin(self):
         """
         Revisa si la mascota murió y termina el juego en ese caso.
         Devuelve True si la partida terminó, False si continúa.

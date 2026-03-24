@@ -25,7 +25,7 @@ class Consola:
         print("═" * 40)
 
     @staticmethod
-    def pedir_tipo_mascota(opciones: dict) -> str:
+    def pedir_tipo_mascota(opciones):
         """Muestra las mascotas disponibles y devuelve la clave elegida por el jugador."""
         print("\n¿Qué mascota querés adoptar?")
         for key, (nombre, _) in opciones.items():
@@ -40,7 +40,7 @@ class Consola:
             print("Opción inválida. Probá de nuevo.")
 
     @staticmethod
-    def pedir_nombre() -> str:
+    def pedir_nombre():
         """Pide el nombre de la mascota. Repite hasta recibir un nombre no vacío."""
         # Seguimos preguntando hasta que el jugador escriba algo
         while True:
@@ -51,24 +51,24 @@ class Consola:
             print("El nombre no puede estar vacío.")
 
     @staticmethod
-    def pedir_accion(turno: int) -> str:
+    def pedir_accion(turno):
         """Muestra el número de turno, el menú de acciones y devuelve la opción ingresada."""
         print(f"\n── Turno {turno} ──────────────────────────")
         print(Consola.MENU_ACCIONES)
         return input("Opción: ").strip()
 
     @staticmethod
-    def mostrar_resultado(mensaje: str):
+    def mostrar_resultado(mensaje):
         """Imprime el resultado de una acción con formato de flecha."""
         print(f"\n  → {mensaje}")
 
     @staticmethod
-    def mostrar_mensaje(mensaje: str):
+    def mostrar_mensaje(mensaje):
         """Imprime un mensaje genérico en consola."""
         print(mensaje)
 
     @staticmethod
-    def mostrar_estado(estado: dict):
+    def mostrar_estado(estado):
         """Muestra los stats actuales de la mascota con barras de progreso visuales."""
         nombre  = estado["nombre"]
         hambre  = estado["hambre"]
@@ -90,7 +90,7 @@ class Consola:
 └─────────────────────────────────────┘""")
 
     @staticmethod
-    def mostrar_muerte(nombre: str, turno: int):
+    def mostrar_muerte(nombre, turno):
         """Muestra la pantalla de game over con el nombre de la mascota y los turnos sobrevividos."""
         print(f"""
 ╔══════════════════════════════════════╗
@@ -102,7 +102,7 @@ class Consola:
     # ── Helpers ───────────────────────────────────────────────────────────────
 
     @staticmethod
-    def _barra(valor: int, invertida: bool, largo: int = 10) -> str:
+    def _barra(valor, invertida, largo=10):
         """
         Genera una barra visual de progreso de 'largo' caracteres.
         El símbolo cambia según el nivel: █ bueno, ▓ regular, ░ malo.

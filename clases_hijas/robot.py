@@ -21,12 +21,12 @@ class Robot(Mascota):
     CARGAR_ENERGIA = 20  # la carga también recupera energía
     CARGAR_HUMOR   = 15  # enchufarse lo pone de buen humor
 
-    def __init__(self, nombre: str):
+    def __init__(self, nombre):
         """Inicializa el robot con batería_extra en 0 además de los stats base."""
         super().__init__(nombre)
         self._bateria_extra = 0  # atributo exclusivo de Robot
 
-    def jugar(self) -> str:
+    def jugar(self):
         """Ejecuta protocolo de diversión: sube humor pero drena energía sin afectar el hambre."""
         self._modificar_stats(
             hambre  = self.JUGAR_HAMBRE,
@@ -44,14 +44,14 @@ class Robot(Mascota):
         )
         return self._mensaje_alimentar()
 
-    def _mensaje_alimentar(self) -> str:
+    def _mensaje_alimentar(self):
         """Mensaje al cargar al robot. Muestra el porcentaje de batería resultante."""
         return f"{self.nombre} conecta el cable de carga. Batería al {self.hambre}%."
 
-    def _mensaje_dormir(self) -> str:
+    def _mensaje_dormir(self):
         """Mensaje al poner en suspensión al robot."""
         return f"{self.nombre} entra en modo suspensión. Zzzz... (sonido de ventilador)"
 
-    def sonido_caracteristico(self) -> str:
+    def sonido_caracteristico(self):
         """Sonido del robot, usado al presentarlo al inicio."""
         return "BZZZT... 01001000 01101001"
