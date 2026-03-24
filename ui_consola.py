@@ -1,3 +1,9 @@
+"""
+Módulo de interfaz de usuario por consola.
+Contiene toda la lógica de impresión y lectura de input. No modifica ningún estado del juego.
+"""
+
+
 class Consola:
     """Responsable de toda la interacción con el usuario. Solo imprime y lee."""
 
@@ -13,81 +19,103 @@ class Consola:
 
     @staticmethod
     def bienvenida():
+        """Muestra la pantalla de título del juego."""
         print("\n" + "═" * 40)
         print("   🐾  TAMAGOTCHI — Simulador de mascotas")
         print("═" * 40)
 
     @staticmethod
     def pedir_tipo_mascota(opciones: dict) -> str:
+        """Muestra las mascotas disponibles y devuelve la clave elegida por el jugador."""
         print("\n¿Qué mascota querés adoptar?")
         for key, (nombre, _) in opciones.items():
             print(f"  {key}. {nombre}")
 
+        # Seguimos preguntando hasta que el jugador elija una opción válida
         while True:
             eleccion = input("\nElegí (1/2/3): ").strip()
-            if eleccion in opciones:
+            opcion_valida = eleccion in opciones
+            if opcion_valida:
                 return eleccion
             print("Opción inválida. Probá de nuevo.")
 
     @staticmethod
     def pedir_nombre() -> str:
+        """Pide el nombre de la mascota. Repite hasta recibir un nombre no vacío."""
+        # Seguimos preguntando hasta que el jugador escriba algo
         while True:
             nombre = input("¿Cómo se llama tu mascota? ").strip()
-            if nombre:
+            nombre_valido = len(nombre) > 0
+            if nombre_valido:
                 return nombre
             print("El nombre no puede estar vacío.")
 
     @staticmethod
     def pedir_accion(turno: int) -> str:
+        """Muestra el número de turno, el menú de acciones y devuelve la opción ingresada."""
         print(f"\n── Turno {turno} ──────────────────────────")
         print(Consola.MENU_ACCIONES)
         return input("Opción: ").strip()
 
     @staticmethod
     def mostrar_resultado(mensaje: str):
+        """Imprime el resultado de una acción con formato de flecha."""
         print(f"\n  → {mensaje}")
 
     @staticmethod
     def mostrar_mensaje(mensaje: str):
+        """Imprime un mensaje genérico en consola."""
         print(mensaje)
 
     @staticmethod
     def mostrar_estado(estado: dict):
+        """Muestra los stats actuales de la mascota con barras de progreso visuales."""
         nombre  = estado["nombre"]
         hambre  = estado["hambre"]
         energia = estado["energia"]
         humor   = estado["humor"]
 
-        barra_h = Consola._barra(hambre,  invertida=True)   # más rojo = peor
-        barra_e = Consola._barra(energia, invertida=False)
-        barra_hu = Consola._barra(humor,  invertida=False)
+        # Alto = bueno en los tres stats (100 = lleno, cargado, feliz)
+        barra_hambre  = Consola._barra(hambre,  invertida=False)
+        barra_energia = Consola._barra(energia, invertida=False)
+        barra_humor   = Consola._barra(humor,   invertida=False)
 
         print(f"""
 ┌─────────────────────────────────────┐
 │  Estado de {nombre:<26}│
 ├─────────────────────────────────────┤
-│  Hambre   {barra_h} {hambre:>3}%  │
-│  Energía  {barra_e} {energia:>3}%  │
-│  Humor    {barra_hu} {humor:>3}%  │
+│  Hambre   {barra_hambre} {hambre:>3}%  │
+│  Energía  {barra_energia} {energia:>3}%  │
+│  Humor    {barra_humor} {humor:>3}%  │
 └─────────────────────────────────────┘""")
 
     @staticmethod
     def mostrar_muerte(nombre: str, turno: int):
+        """Muestra la pantalla de game over con el nombre de la mascota y los turnos sobrevividos."""
         print(f"""
 ╔══════════════════════════════════════╗
-║  😢  {nombre} no pudo más...          
-║  Sobrevivió {turno} turno(s).         
-║  Mejor suerte la próxima vez.        
+║  😢  {nombre} no pudo más...
+║  Sobrevivió {turno} turno(s).
+║  Mejor suerte la próxima vez.
 ╚══════════════════════════════════════╝""")
 
     # ── Helpers ───────────────────────────────────────────────────────────────
 
     @staticmethod
     def _barra(valor: int, invertida: bool, largo: int = 10) -> str:
-        """Genera una barra visual de progreso."""
-        llenas = round(valor / 100 * largo)
+        """
+        Genera una barra visual de progreso de 'largo' caracteres.
+        El símbolo cambia según el nivel: █ bueno, ▓ regular, ░ malo.
+        Con invertida=True, el valor alto se muestra como malo (░).
+        """
+        bloques_llenos = round(valor / 100 * largo)
+        bloques_vacios = largo - bloques_llenos
+
         if invertida:
+            # Valor alto = malo (ej: demasiado calor)
             simbolo = "█" if valor > 60 else ("▓" if valor > 30 else "░")
         else:
+            # Valor alto = bueno (ej: mucha energía, buen humor, lleno)
             simbolo = "░" if valor < 30 else ("▓" if valor < 60 else "█")
-        return f"[{'█' * llenas}{'·' * (largo - llenas)}]"
+
+        return f"[{simbolo * bloques_llenos}{'·' * bloques_vacios}]"
