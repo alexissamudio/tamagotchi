@@ -29,9 +29,9 @@ class Game:
 
     def __init__(self):
         """Inicializa el juego sin mascota activa y con el contador de turnos en 0."""
-        self.__mascota = None  # se asigna cuando el jugador elige
-        self.__turno   = 0
-        self.__activo  = False
+        self.__mascota = None   # privado — solo Game puede tocarlo
+        self.__turno   = 0     # privado — solo Game puede tocarlo
+        self.__activo  = False # privado — solo Game puede tocarlo
 
     # ── Inicio ────────────────────────────────────────────────────────────────
 

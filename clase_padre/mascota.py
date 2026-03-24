@@ -34,10 +34,10 @@ class Mascota(ABC):
 
     def __init__(self, nombre):
         """Inicializa la mascota con stats por defecto."""
-        self._nombre  = nombre
-        self._hambre  = self.HAMBRE_INICIAL   # 100 = lleno, 0 = muerto de hambre
-        self._energia = self.ENERGIA_INICIAL  # 100 = lleno de energía, 0 = agotado
-        self._humor   = self.HUMOR_INICIAL    # 100 = feliz, 0 = miserable
+        self._nombre  = nombre           # protegido — accesible desde las subclases
+        self._hambre  = self.HAMBRE_INICIAL   # protegido — 100 = lleno, 0 = muerto de hambre
+        self._energia = self.ENERGIA_INICIAL  # protegido — 100 = lleno de energía, 0 = agotado
+        self._humor   = self.HUMOR_INICIAL    # protegido — 100 = feliz, 0 = miserable
 
     # ── Getters ──────────────────────────────────────────────────────────────
 
