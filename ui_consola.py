@@ -103,7 +103,8 @@ class Consola:
     @staticmethod
     def _barra(valor, largo=10):
         """Genera una barra visual de progreso. █ bueno, ▓ regular, ░ malo."""
-        bloques_llenos = round(valor / 100 * largo)
+        proporcion     = valor / 100
+        bloques_llenos = round(proporcion * largo)
         bloques_vacios = largo - bloques_llenos
 
         if valor < 30:

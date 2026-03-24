@@ -42,9 +42,8 @@ class Game:
         opcion_mascota = Consola.pedir_tipo_mascota(self.MASCOTAS_DISPONIBLES)
         nombre         = Consola.pedir_nombre()
 
-        # El guión bajo descarta el nombre visible ("Perro") que no necesitamos aquí
-        _, ClaseMascota = self.MASCOTAS_DISPONIBLES[opcion_mascota]
-        self.__mascota  = ClaseMascota(nombre)
+        nombre_especie, ClaseMascota = self.MASCOTAS_DISPONIBLES[opcion_mascota]
+        self.__mascota = ClaseMascota(nombre)
 
         Consola.mostrar_mensaje(
             f"\n¡{self.__mascota.nombre} ha llegado a tu vida! "
