@@ -75,10 +75,9 @@ class Consola:
         energia = estado["energia"]
         humor   = estado["humor"]
 
-        # Alto = bueno en los tres stats (100 = lleno, cargado, feliz)
-        barra_hambre  = Consola._barra(hambre,  invertida=False)
-        barra_energia = Consola._barra(energia, invertida=False)
-        barra_humor   = Consola._barra(humor,   invertida=False)
+        barra_hambre  = Consola._barra(hambre)
+        barra_energia = Consola._barra(energia)
+        barra_humor   = Consola._barra(humor)
 
         print(f"""
 ┌─────────────────────────────────────┐
@@ -102,20 +101,9 @@ class Consola:
     # ── Helpers ───────────────────────────────────────────────────────────────
 
     @staticmethod
-    def _barra(valor, invertida, largo=10):
-        """
-        Genera una barra visual de progreso de 'largo' caracteres.
-        El símbolo cambia según el nivel: █ bueno, ▓ regular, ░ malo.
-        Con invertida=True, el valor alto se muestra como malo (░).
-        """
+    def _barra(valor, largo=10):
+        """Genera una barra visual de progreso. █ bueno, ▓ regular, ░ malo."""
         bloques_llenos = round(valor / 100 * largo)
         bloques_vacios = largo - bloques_llenos
-
-        if invertida:
-            # Valor alto = malo (ej: demasiado calor)
-            simbolo = "█" if valor > 60 else ("▓" if valor > 30 else "░")
-        else:
-            # Valor alto = bueno (ej: mucha energía, buen humor, lleno)
-            simbolo = "░" if valor < 30 else ("▓" if valor < 60 else "█")
-
+        simbolo = "░" if valor < 30 else ("▓" if valor < 60 else "█")
         return f"[{simbolo * bloques_llenos}{'·' * bloques_vacios}]"

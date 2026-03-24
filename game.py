@@ -79,18 +79,8 @@ class Game:
         """Ejecuta la acción elegida por el jugador y muestra el resultado en consola."""
         accion = self.ACCIONES.get(opcion_jugador)  # None si la tecla no es válida
 
-        if accion == "alimentar":
-            resultado = self.__mascota.alimentar()
-            Consola.mostrar_resultado(resultado)
-            Consola.mostrar_estado(self.__mascota.get_estado())
-
-        elif accion == "jugar":
-            resultado = self.__mascota.jugar()
-            Consola.mostrar_resultado(resultado)
-            Consola.mostrar_estado(self.__mascota.get_estado())
-
-        elif accion == "dormir":
-            resultado = self.__mascota.dormir()
+        if accion in ("alimentar", "jugar", "dormir"):
+            resultado = getattr(self.__mascota, accion)()
             Consola.mostrar_resultado(resultado)
             Consola.mostrar_estado(self.__mascota.get_estado())
 
@@ -102,9 +92,8 @@ class Game:
             self.__activo = False
 
         else:
-            # La tecla ingresada no corresponde a ninguna acción válida
             Consola.mostrar_mensaje("Opción inválida. Intentá de nuevo.")
-            self.__turno -= 1  # no contamos este intento fallido como turno
+            self.__turno -= 1
 
     # ── Fin de partida ────────────────────────────────────────────────────────
 
