@@ -134,5 +134,4 @@ class Mascota(ABC):
             "hambre":  self._hambre,
             "energia": self._energia,
             "humor":   self._humor,
-            "vivo":    self.esta_vivo(),
         }

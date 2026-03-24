@@ -21,11 +21,6 @@ class Robot(Mascota):
     CARGAR_ENERGIA = 20  # la carga también recupera energía
     CARGAR_HUMOR   = 15  # enchufarse lo pone de buen humor
 
-    def __init__(self, nombre):
-        """Inicializa el robot con batería_extra en 0 además de los stats base."""
-        super().__init__(nombre)
-        self._bateria_extra = 0  # atributo exclusivo de Robot
-
     def jugar(self):
         """Ejecuta protocolo de diversión: sube humor pero drena energía sin afectar el hambre."""
         self._modificar_stats(
